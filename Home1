@@ -1,0 +1,13 @@
+from sys import argv
+import requests,json
+try:
+    a=argv
+    res=requests.get("https://restcountries.com/v3.1/"+a[1]+'/'+a[2])
+    stat=res.status_code
+    stat=int(stat)
+    if stat>=400:
+        print(stat)
+    res_obj=json.dumps(json.loads(res.text),indent=2)
+    print(res_obj)
+except:
+    print('arguments are invalid')
